@@ -1,18 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-const zoom = 13;
-const center = {
-	lat: 51.514847,
-	lng: -0.143215,
-};
-// const title = "Regent Hall";
-const style = {
-	margin: "1rem",
-	height: "60vh",
-	width: "95%",
-};
-
-const Map = ({ data }) => {
+const Map = ({ data, center, zoom, style }) => {
 	const ref = useRef(null);
 	const [map, setMap] = useState();
 
@@ -25,7 +13,7 @@ const Map = ({ data }) => {
 				})
 			);
 		}
-	}, [ref, map]);
+	}, [ref, map, center, zoom]);
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -60,36 +48,36 @@ const Map = ({ data }) => {
 				}
 			}
 		}, 2000);
-
-		// const contentString = title;
-
-		// const infowindow = new window.google.maps.InfoWindow({
-		// 	content: contentString,
-		// });
-
-		// const marker = new window.google.maps.Marker({
-		// 	position: center,
-		// 	map,
-		// 	title: contentString,
-		// 	optimized: true,
-		// });
-
-		// if (marker) {
-		// 	["click"].forEach((eventName) =>
-		// 		window.google.maps.event.clearListeners(marker, eventName)
-		// 	);
-
-		// 	marker.addListener("click", () => {
-		// 		infowindow.open({
-		// 			anchor: marker,
-		// 			map,
-		// 			shouldFocus: false,
-		// 		});
-		// 	});
-		// }
 	}, [map, data]);
 
 	return <div ref={ref} id="map" style={style} />;
 };
 
 export default Map;
+
+// const contentString = title;
+
+// const infowindow = new window.google.maps.InfoWindow({
+// 	content: contentString,
+// });
+
+// const marker = new window.google.maps.Marker({
+// 	position: center,
+// 	map,
+// 	title: contentString,
+// 	optimized: true,
+// });
+
+// if (marker) {
+// 	["click"].forEach((eventName) =>
+// 		window.google.maps.event.clearListeners(marker, eventName)
+// 	);
+
+// 	marker.addListener("click", () => {
+// 		infowindow.open({
+// 			anchor: marker,
+// 			map,
+// 			shouldFocus: false,
+// 		});
+// 	});
+// }

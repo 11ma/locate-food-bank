@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const GetLocation = () => {
+export const GetLocation = () => {
 	const [currentLocation, setCurrentLocation] = useState([]);
 
 	useEffect(() => {
@@ -17,5 +17,3 @@ const GetLocation = () => {
 
 	return currentLocation;
 };
-
-export default GetLocation;
