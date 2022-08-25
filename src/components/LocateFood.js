@@ -20,7 +20,12 @@ const style = {
 
 const LocateFood = () => {
 	const location = GetLocation();
-	const [foodBankData, setFoodBankData] = useState([location]);
+	const currentLocation = {
+		name: "src",
+		lat: parseFloat(location.lat),
+		lng: parseFloat(location.lng),
+	};
+	const [foodBankData, setFoodBankData] = useState([]);
 	const [err, setErr] = useState(null);
 	const zoom = 13;
 
@@ -31,6 +36,8 @@ const LocateFood = () => {
 				setErr(err);
 			});
 	}, []);
+	console.log("error:", err);
+	// console.log(currentLocation);
 
 	// filter for only 10 km
 	const filterData = foodBankData.filter((v) => {
@@ -47,7 +54,8 @@ const LocateFood = () => {
 		}
 	});
 
-	console.log(filterData);
+	// console.log(filterData);
+
 	const render = (status) => {
 		if (status === Status.FAILURE) {
 			console.log("error");
@@ -56,23 +64,28 @@ const LocateFood = () => {
 		}
 	};
 
-	// if (!foodBankData) {
-	// 	return (
-	// 		<div>
-	// 			<h1>Food bank</h1>
-	// 			<BallTriangle />
-	// 		</div>
-	// 	);
-	// } else {
-	return (
-		<div>
-			<h1>Food bank</h1>
-			<Wrapper apiKey={API_KEY} render={render}>
-				<Map center={location} data={foodBankData} zoom={zoom} style={style} />
-			</Wrapper>
-		</div>
-	);
-	// }
+	if (!foodBankData && !location && !filterData) {
+		return (
+			<div>
+				<h1>Food bank</h1>
+				<BallTriangle />
+			</div>
+		);
+	} else {
+		return (
+			<div>
+				<h1>Food bank</h1>
+				<Wrapper apiKey={API_KEY} render={render}>
+					<Map
+						center={currentLocation}
+						data={filterData}
+						zoom={zoom}
+						style={style}
+					/>
+				</Wrapper>
+			</div>
+		);
+	}
 };
 
 export default LocateFood;

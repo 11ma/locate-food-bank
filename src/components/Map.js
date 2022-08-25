@@ -24,7 +24,10 @@ const Map = ({ data, center, zoom, style }) => {
 					content: contentString,
 				});
 
-				const position = { lat: data[i].lat++, lng: data[i].lng++ };
+				const position = {
+					lat: parseFloat(data[i].coord.lat),
+					lng: parseFloat(data[i].coord.lng),
+				};
 
 				const marker = new window.google.maps.Marker({
 					position: position,
