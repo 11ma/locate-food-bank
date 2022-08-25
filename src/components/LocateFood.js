@@ -22,22 +22,22 @@ const LocateFood = () => {
 
 	// console.log(currentLocation);
 
-	console.log(foodBankData);
-	// filter for only 10 km
+	// console.log(foodBankData);
 
-	// const filterData = foodBankData.filter((v) => {
-	// 	const getDistance = CalculateDistance(
-	// 		location.lat,
-	// 		location.lng,
-	// 		v.coord.lat,
-	// 		v.coord.lng
-	// 	);
-	// 	if (getDistance < 10) {
-	// 		return true;
-	// 	} else {
-	// 		return false;
-	// 	}
-	// });
+	// filter for only 10 km
+	const filterData = foodBankData.filter((v) => {
+		const getDistance = CalculateDistance(
+			location.lat,
+			location.lng,
+			v.coord.lat,
+			v.coord.lng
+		);
+		if (getDistance < 10) {
+			return true;
+		} else {
+			return false;
+		}
+	});
 
 	// console.log(filterData);
 };
