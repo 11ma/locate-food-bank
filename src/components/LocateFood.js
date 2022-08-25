@@ -1,51 +1,38 @@
-import { GetFood } from "../api/customHook";
-import GetLocation from "../api/GetLocation";
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import { FoodBankData } from "../api/foodBankAPI";
+import { CalculateDistance } from "./CalculateDistance";
+import { GetLocation } from "../api/getLocation";
 import { useEffect, useState } from "react";
-import { BallTriangle } from "react-loader-spinner";
-import { API_KEY } from "../apiKeys/apiKeys";
-import Map from "./Map";
 
 const LocateFood = () => {
-	const [foodBankData, setFoodBankData] = useState(null);
+	const [foodBankData, setFoodBankData] = useState([]);
+	const [err, setErr] = useState(null);
 
 	useEffect(() => {
-		const getData = async () => {
-			const data = await GetFood();
-			setFoodBankData(data);
-		};
-		getData();
+		FoodBankData()
+			.then((data) => setFoodBankData(data))
+			.catch((err) => {
+				setErr(err);
+			});
 	}, []);
 
-	const render = (status) => {
-		if (status === Status.FAILURE) {
-			console.log("error");
+	// console.log(foodBankData);
+	// filter for only 10 km
+	const location = GetLocation();
+	const filterData = foodBankData.filter((v) => {
+		const getDistance = CalculateDistance(
+			location.lat,
+			location.lng,
+			v.coord.lat,
+			v.coord.lng
+		);
+		if (getDistance < 10) {
+			return true;
 		} else {
-			console.log("success");
+			return false;
 		}
-	};
+	});
 
-	const locationData = GetLocation();
-
-	if (!foodBankData) {
-		return (
-			<div>
-				<h1>Food bank</h1>
-				<BallTriangle />
-			</div>
-		);
-	} else {
-		return (
-			<div>
-				<h1>Food bank</h1>
-				<h2>my lat: {locationData.lat}</h2>
-				<h2>my lng: {locationData.lng}</h2>
-				<Wrapper apiKey={API_KEY} render={render}>
-					<Map data={foodBankData} />
-				</Wrapper>
-			</div>
-		);
-	}
+	console.log(filterData);
 };
 
 export default LocateFood;

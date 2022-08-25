@@ -2,7 +2,7 @@ import LocateFood from "./components/LocateFood";
 
 function App() {
 	return (
-		<div className="App">
+		<div>
 			<LocateFood />
 		</div>
 	);
