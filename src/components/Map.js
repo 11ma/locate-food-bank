@@ -57,30 +57,3 @@ const Map = ({ data, center, zoom, style }) => {
 };
 
 export default Map;
-
-// const contentString = title;
-
-// const infowindow = new window.google.maps.InfoWindow({
-// 	content: contentString,
-// });
-
-// const marker = new window.google.maps.Marker({
-// 	position: center,
-// 	map,
-// 	title: contentString,
-// 	optimized: true,
-// });
-
-// if (marker) {
-// 	["click"].forEach((eventName) =>
-// 		window.google.maps.event.clearListeners(marker, eventName)
-// 	);
-
-// 	marker.addListener("click", () => {
-// 		infowindow.open({
-// 			anchor: marker,
-// 			map,
-// 			shouldFocus: false,
-// 		});
-// 	});
-// }
