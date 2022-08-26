@@ -1,30 +1,12 @@
 import { FoodBankData } from "../api/foodBankAPI";
 import { CalculateDistance } from "./CalculateDistance";
 import { GetLocation } from "../api/getLocation";
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { BallTriangle } from "react-loader-spinner";
-import { API_KEY } from "../apiKeys/apiKeys";
-import Map from "./Map";
 import { useEffect, useState } from "react";
-
-// const center = {
-// 	lat: 51.514847,
-// 	lng: -0.143215,
-// };
-// const title = "src";
-const style = {
-	margin: "1rem",
-	height: "60vh",
-	width: "95%",
-};
+import DisplayMap from "./DisplayMap";
 
 const LocateFood = () => {
 	const location = GetLocation();
-	const currentLocation = {
-		name: "src",
-		lat: parseFloat(location.lat),
-		lng: parseFloat(location.lng),
-	};
 	const [foodBankData, setFoodBankData] = useState([]);
 	const [err, setErr] = useState(null);
 	const zoom = 13;
@@ -37,9 +19,8 @@ const LocateFood = () => {
 			});
 	}, []);
 	console.log("error:", err);
-	// console.log(currentLocation);
 
-	// filter for only 10 km
+	// filter for only 10 miles
 	const filterData = foodBankData.filter((v) => {
 		const getDistance = CalculateDistance(
 			location.lat,
@@ -54,17 +35,9 @@ const LocateFood = () => {
 		}
 	});
 
-	// console.log(filterData);
+	// console.log(filterData)
 
-	const render = (status) => {
-		if (status === Status.FAILURE) {
-			console.log("error");
-		} else {
-			console.log("success");
-		}
-	};
-
-	if (!foodBankData && !location && !filterData) {
+	if (foodBankData.length === 0 || location.length === 0) {
 		return (
 			<div>
 				<h1>Food bank</h1>
@@ -74,15 +47,7 @@ const LocateFood = () => {
 	} else {
 		return (
 			<div>
-				<h1>Food bank</h1>
-				<Wrapper apiKey={API_KEY} render={render}>
-					<Map
-						center={currentLocation}
-						data={filterData}
-						zoom={zoom}
-						style={style}
-					/>
-				</Wrapper>
+				<DisplayMap center={location} data={filterData} zoom={zoom} />
 			</div>
 		);
 	}

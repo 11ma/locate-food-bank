@@ -6,14 +6,14 @@ export const FoodBankData = async () => {
 		for (let i = 0; i < getData.length; i++) {
 			let splitLatLng = getData[i].lat_lng.split(",");
 			let obj = {
-				name: getData[i].name,
+				foodbank: getData[i].foodbank,
 				email: getData[i].email,
+				phone: getData[i].phone,
 				coord: {
-					lat: splitLatLng[0],
-					lng: splitLatLng[1],
+					lat: parseFloat(splitLatLng[0]),
+					lng: parseFloat(splitLatLng[1]),
 				},
 				postcode: getData[i].postcode,
-				url: getData[i].url,
 			};
 			filteredData.push(obj);
 		}

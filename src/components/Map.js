@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import foodIcon from "../food-cart.png";
 
 const Map = ({ data, center, zoom, style }) => {
 	const ref = useRef(null);
@@ -15,24 +16,31 @@ const Map = ({ data, center, zoom, style }) => {
 		}
 	}, [ref, map, center, zoom]);
 
+	new window.google.maps.Marker({
+		position: center,
+		map,
+		title: "current location",
+	});
+
 	useEffect(() => {
 		setTimeout(() => {
 			for (let i = 0; i < data.length; i++) {
-				const contentString = data[i].name;
+				const contentString = data[i].foodbank.name;
 
 				const infowindow = new window.google.maps.InfoWindow({
 					content: contentString,
 				});
 
 				const position = {
-					lat: parseFloat(data[i].coord.lat),
-					lng: parseFloat(data[i].coord.lng),
+					lat: data[i].coord.lat,
+					lng: data[i].coord.lng,
 				};
 
 				const marker = new window.google.maps.Marker({
 					position: position,
 					map,
 					title: contentString,
+					icon: foodIcon,
 					optimized: true,
 				});
 
