@@ -9,11 +9,12 @@ export const FoodBankData = async () => {
 				foodbank: getData[i].foodbank,
 				email: getData[i].email,
 				phone: getData[i].phone,
+				address: getData[i].address,
+				postcode: getData[i].postcode,
 				coord: {
 					lat: parseFloat(splitLatLng[0]),
 					lng: parseFloat(splitLatLng[1]),
 				},
-				postcode: getData[i].postcode,
 			};
 			filteredData.push(obj);
 		}

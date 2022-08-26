@@ -4,6 +4,7 @@ import { GetLocation } from "../api/getLocation";
 import { BallTriangle } from "react-loader-spinner";
 import { useEffect, useState } from "react";
 import DisplayMap from "./DisplayMap";
+import ListFoodBank from "./ListFoodBank";
 
 const LocateFood = () => {
 	const location = GetLocation();
@@ -40,7 +41,7 @@ const LocateFood = () => {
 	if (foodBankData.length === 0 || location.length === 0) {
 		return (
 			<div>
-				<h1>Food bank</h1>
+				<h1>Food banks</h1>
 				<BallTriangle />
 			</div>
 		);
@@ -48,6 +49,7 @@ const LocateFood = () => {
 		return (
 			<div>
 				<DisplayMap center={location} data={filterData} zoom={zoom} />
+				<ListFoodBank data={filterData} />
 			</div>
 		);
 	}
