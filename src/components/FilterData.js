@@ -1,8 +1,8 @@
-import { CalculateDistance } from "./CalculateDistance";
+import { CalculateDistance } from "./CalculateDistance"
 
 export const FilterData = (data, location) => {
 	if (data.length === 0 && location.length === 0) {
-		return [];
+		return []
 	}
 	const result = data.filter((v) => {
 		const getDistance = CalculateDistance(
@@ -10,12 +10,12 @@ export const FilterData = (data, location) => {
 			location.lng,
 			v.coord.lat,
 			v.coord.lng
-		);
+		)
 		if (getDistance < 10) {
-			return true;
+			return true
 		} else {
-			return false;
+			return false
 		}
-	});
-	return result;
-};
+	})
+	return result
+}

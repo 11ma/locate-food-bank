@@ -1,4 +1,4 @@
-import FoodBank from "./FoodBank";
+import FoodBank from "./FoodBank"
 
 const ListFoodBank = ({ data }) => {
 	return (
@@ -7,7 +7,7 @@ const ListFoodBank = ({ data }) => {
 				<FoodBank data={v} key={v.id} />
 			))}
 		</div>
-	);
-};
+	)
+}
 
-export default ListFoodBank;
+export default ListFoodBank

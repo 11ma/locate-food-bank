@@ -1,11 +1,11 @@
 export const FoodBankData = async () => {
-	const filteredData = [];
-	const res = await fetch(`https://www.givefood.org.uk/api/2/locations/`);
+	const filteredData = []
+	const res = await fetch(`https://www.givefood.org.uk/api/2/locations/`)
 	if (res.ok) {
-		const getData = await res.json();
+		const getData = await res.json()
 		for (let i = 0; i < getData.length; i++) {
-			let splitLatLng = getData[i].lat_lng.split(",");
-			let idGen = i + 1;
+			let splitLatLng = getData[i].lat_lng.split(",")
+			let idGen = i + 1
 			let obj = {
 				id: idGen,
 				foodbank: getData[i].foodbank,
@@ -17,9 +17,9 @@ export const FoodBankData = async () => {
 					lat: parseFloat(splitLatLng[0]),
 					lng: parseFloat(splitLatLng[1]),
 				},
-			};
-			filteredData.push(obj);
+			}
+			filteredData.push(obj)
 		}
 	}
-	return filteredData;
-};
+	return filteredData
+}

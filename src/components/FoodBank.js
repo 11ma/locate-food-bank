@@ -1,7 +1,7 @@
 const style = {
 	border: "1px solid black",
 	margin: "5px",
-};
+}
 
 const FoodBank = ({ data }) => {
 	return (
@@ -11,7 +11,7 @@ const FoodBank = ({ data }) => {
 			<p>{data.postcode}</p>
 			<p>{data.foodbank.urls.html}</p>
 		</div>
-	);
-};
+	)
+}
 
-export default FoodBank;
+export default FoodBank

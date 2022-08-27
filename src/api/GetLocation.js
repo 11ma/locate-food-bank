@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 export const GetLocation = () => {
-	const [currentLocation, setCurrentLocation] = useState([]);
+	const [currentLocation, setCurrentLocation] = useState([])
 
 	useEffect(() => {
 		const location = async () => {
@@ -9,11 +9,11 @@ export const GetLocation = () => {
 				setCurrentLocation({
 					lat: parseFloat(position.coords.latitude),
 					lng: parseFloat(position.coords.longitude),
-				});
-			});
-		};
-		location();
-	}, []);
+				})
+			})
+		}
+		location()
+	}, [])
 
-	return currentLocation;
-};
+	return currentLocation
+}
