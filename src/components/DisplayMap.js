@@ -13,13 +13,12 @@ const DisplayMap = ({ center, data, zoom }) => {
 		if (status === Status.FAILURE) {
 			console.log("error");
 		} else {
-			console.log("success");
+			return;
 		}
 	};
 
 	return (
 		<div>
-			<h1>Food bank</h1>
 			<Wrapper apiKey={API_KEY} render={render}>
 				<Map center={center} data={data} zoom={zoom} style={style} />
 			</Wrapper>

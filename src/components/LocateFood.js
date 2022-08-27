@@ -19,21 +19,15 @@ const LocateFood = () => {
 				setErr(err);
 			});
 	}, []);
-	console.log("error:", err);
+	// console.log("error:", err);
 
 	// filter for only 10 miles
 	const filterData = FilterData(foodBankData, myLocation);
 
-	if (filterData.length === 0) {
-		console.log("nothing here yet");
-	} else {
-		console.log(filterData);
-	}
-
 	if (filterData.length === 0 || myLocation.length === 0) {
 		return (
 			<div>
-				<h1>Food banks</h1>
+				<h1>Food bank</h1>
 				<BallTriangle />
 			</div>
 		);
@@ -42,6 +36,7 @@ const LocateFood = () => {
 	} else {
 		return (
 			<div>
+				<h1>Food bank</h1>
 				<DisplayMap center={myLocation} data={filterData} zoom={zoom} />
 				<ListFoodBank data={filterData} />
 			</div>
