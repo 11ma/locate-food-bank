@@ -3,8 +3,8 @@ import FoodBank from "./FoodBank";
 const ListFoodBank = ({ data }) => {
 	return (
 		<div>
-			{data.map((v, key) => (
-				<FoodBank data={v} />
+			{data.map((v) => (
+				<FoodBank data={v} key={v.id} />
 			))}
 		</div>
 	);

@@ -5,7 +5,9 @@ export const FoodBankData = async () => {
 		const getData = await res.json();
 		for (let i = 0; i < getData.length; i++) {
 			let splitLatLng = getData[i].lat_lng.split(",");
+			let idGen = i + 1;
 			let obj = {
+				id: idGen,
 				foodbank: getData[i].foodbank,
 				email: getData[i].email,
 				phone: getData[i].phone,

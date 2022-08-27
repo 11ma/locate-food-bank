@@ -5,7 +5,7 @@ const style = {
 
 const FoodBank = ({ data }) => {
 	return (
-		<div style={style}>
+		<div style={style} key={data.id}>
 			<p>{data.foodbank.name}</p>
 			<p>{data.address}</p>
 			<p>{data.postcode}</p>
