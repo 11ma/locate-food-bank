@@ -1,5 +1,5 @@
-import { FoodBankData } from "../api/foodBankAPI";
-import { GetLocation } from "../api/getLocation";
+import { FoodBankData } from "../api/FoodBankAPI";
+import { GetLocation } from "../api/GetLocation";
 import { BallTriangle } from "react-loader-spinner";
 import { useEffect, useState } from "react";
 import DisplayMap from "./DisplayMap";
