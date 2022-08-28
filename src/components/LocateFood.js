@@ -1,4 +1,4 @@
-import { FoodBankData } from "../api/FoodBankAPI"
+import { FoodBankAPI } from "../api/FoodBankAPI"
 import { GetLocation } from "../api/GetLocation"
 import { GetIPLocation } from "../api/GetIPLocation"
 import { BallTriangle } from "react-loader-spinner"
@@ -11,41 +11,38 @@ import styles from "../modules/LocateFood.module.scss"
 const LocateFood = () => {
 	const myLocation = GetLocation()
 	const [foodBankData, setFoodBankData] = useState([])
-	const [IPLocation, setIPLocation] = useState([])
+	const [country, setCountry] = useState([])
 	const [err, setErr] = useState(null)
 	const zoom = 13
 
 	useEffect(() => {
-		FoodBankData()
+		FoodBankAPI()
 			.then((data) => setFoodBankData(data))
 			.catch((err) => {
 				setErr(err)
 			})
 		GetIPLocation()
-			.then((data) => setIPLocation(data))
+			.then((data) => setCountry(data[0].country))
 			.catch((err) => {
 				setErr(err)
 			})
 	}, [])
+
 	// console.log("error:", err)
-	console.log("location:", myLocation)
+	// console.log("location:", myLocation)
 	// console.log("data:", foodBankData)
-	if (foodBankData.length > 0 && myLocation.length === 0) {
-		console.log("no location")
-	} else if (foodBankData.length === 0 && myLocation.length === 0) {
-		console.log("no location and no data")
-	}
+	// console.log("country:", country)
 
 	// filter for only 10 miles
 	const filterData = FilterData(foodBankData, myLocation)
 
 	if (err !== null) {
 		window.location.reload()
-	} else if (IPLocation) {
+	} else if (country !== "United Kingdom") {
 		return (
 			<div className={styles.LoadingContainer}>
 				<h1 className={styles.LoadingTitle}>Food bank</h1>
-				<BallTriangle wrapperClass={styles.LoadingBall} />
+				<h2>Not available for {country} </h2>
 			</div>
 		)
 	} else if (filterData.length === 0 || myLocation.length === 0) {
