@@ -20,20 +20,27 @@ const LocateFood = () => {
 				setErr(err)
 			})
 	}, [])
-	// console.log("error:", err);
+	// console.log("error:", err)
+	console.log("location:", myLocation)
+	// console.log("data:", foodBankData)
+	if (foodBankData.length > 0 && myLocation.length === 0) {
+		console.log("no location")
+	} else if (foodBankData.length === 0 && myLocation.length === 0) {
+		console.log("no location and no data")
+	}
 
 	// filter for only 10 miles
 	const filterData = FilterData(foodBankData, myLocation)
 
-	if (filterData.length === 0 || myLocation.length === 0) {
+	if (err !== null) {
+		window.location.reload()
+	} else if (filterData.length === 0 || myLocation.length === 0) {
 		return (
 			<div className={styles.LoadingContainer}>
 				<h1 className={styles.LoadingTitle}>Food bank</h1>
 				<BallTriangle wrapperClass={styles.LoadingBall} />
 			</div>
 		)
-	} else if (err !== null) {
-		window.location.reload()
 	} else {
 		return (
 			<div>
