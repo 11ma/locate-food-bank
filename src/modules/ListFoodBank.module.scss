@@ -1,0 +1,12 @@
+.ListFoodBankContainer {
+	width: 65%;
+	border: 2px solid black;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+@media (max-width: 580px) {
+	.ListFoodBankContainer {
+		width: 95%;
+	}
+}
