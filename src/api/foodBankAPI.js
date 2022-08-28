@@ -1,4 +1,4 @@
-export const FoodBankData = async () => {
+export const FoodBankAPI = async () => {
 	const filteredData = []
 	const res = await fetch(`https://www.givefood.org.uk/api/2/locations/`)
 	if (res.ok) {

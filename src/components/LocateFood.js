@@ -1,5 +1,6 @@
 import { FoodBankData } from "../api/FoodBankAPI"
 import { GetLocation } from "../api/GetLocation"
+import { GetIPLocation } from "../api/GetIPLocation"
 import { BallTriangle } from "react-loader-spinner"
 import { useEffect, useState } from "react"
 import DisplayMap from "./DisplayMap"
@@ -10,12 +11,18 @@ import styles from "../modules/LocateFood.module.scss"
 const LocateFood = () => {
 	const myLocation = GetLocation()
 	const [foodBankData, setFoodBankData] = useState([])
+	const [IPLocation, setIPLocation] = useState([])
 	const [err, setErr] = useState(null)
 	const zoom = 13
 
 	useEffect(() => {
 		FoodBankData()
 			.then((data) => setFoodBankData(data))
+			.catch((err) => {
+				setErr(err)
+			})
+		GetIPLocation()
+			.then((data) => setIPLocation(data))
 			.catch((err) => {
 				setErr(err)
 			})
@@ -34,6 +41,13 @@ const LocateFood = () => {
 
 	if (err !== null) {
 		window.location.reload()
+	} else if (IPLocation) {
+		return (
+			<div className={styles.LoadingContainer}>
+				<h1 className={styles.LoadingTitle}>Food bank</h1>
+				<BallTriangle wrapperClass={styles.LoadingBall} />
+			</div>
+		)
 	} else if (filterData.length === 0 || myLocation.length === 0) {
 		return (
 			<div className={styles.LoadingContainer}>
