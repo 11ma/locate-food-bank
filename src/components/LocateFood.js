@@ -1,4 +1,4 @@
-import { FoodBankData } from "../api/FoodBankAPI"
+import { FoodBankAPI } from "../api/FoodBankAPI"
 import { CalculateDistance } from "./CalculateDistance"
 import { GetLocation } from "../api/GetLocation"
 import { GetIPLocation } from "../api/GetIPLocation"
@@ -11,7 +11,7 @@ const LocateFood = () => {
 	const [err, setErr] = useState(null)
 
 	useEffect(() => {
-		FoodBankData()
+		FoodBankAPI()
 			.then((data) => setFoodBankData(data))
 			.catch((err) => {
 				setErr(err)
@@ -27,7 +27,7 @@ const LocateFood = () => {
 
 	// console.log(foodBankData);
 
-	console.log(IPLocation)
+	// console.log(IPLocation[0].countryCode === "GB")
 
 	// filter for only 10 km
 	const filterData = foodBankData.filter((v) => {
