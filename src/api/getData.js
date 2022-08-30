@@ -46,6 +46,7 @@ export const GetLocation = () => {
 	return currentLocation
 }
 
+// get ip location
 export const GetIPLocation = async () => {
 	const IPLocation = []
 	const res = await fetch(

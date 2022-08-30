@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import foodIcon from "../assets/food-cart.png"
 
-const Map = ({ data, center, zoom, style }) => {
+const Map = ({ data, center, zoom }) => {
 	const ref = useRef(null)
 	const [map, setMap] = useState()
 

@@ -1,4 +1,4 @@
-import { CalculateDistance } from "../hooks/calculateDistance"
+import { CalculateDistance } from "./calculateDistance"
 
 export const FilterData = (data, location) => {
 	if (data.length === 0 && location.length === 0) {

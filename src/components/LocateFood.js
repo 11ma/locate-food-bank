@@ -1,11 +1,11 @@
-import { FoodBankAPI } from "../hooks/apiHooks"
-import { GetLocation } from "../hooks/apiHooks"
-import { GetIPLocation } from "../hooks/apiHooks"
+import { FoodBankAPI } from "../api/getData"
+import { GetLocation } from "../api/getData"
+import { GetIPLocation } from "../api/getData"
 import { BallTriangle } from "react-loader-spinner"
 import { useEffect, useState } from "react"
 import DisplayMap from "./DisplayMap"
 import ListFoodBank from "./ListFoodBank"
-import { FilterData } from "./FilterData"
+import { FilterData } from "../helper/filterData"
 import styles from "../modules/LocateFood.module.scss"
 
 const LocateFood = () => {
