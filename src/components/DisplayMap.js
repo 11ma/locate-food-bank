@@ -1,6 +1,6 @@
 import { Wrapper, Status } from "@googlemaps/react-wrapper"
-import { API_KEY } from "../apiKeys/apiKeys"
 import Map from "./Map"
+const API_KEY = process.env.REACT_APP_GOOGLE_MAP_API_KEY
 
 const DisplayMap = ({ center, data, zoom }) => {
 	const render = (status) => {
